@@ -19,9 +19,10 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
-import useAuthContext from "../../Utils/useAuthcontext";
+
 import hostImage from "../../Utils/hostImage";
 import { globalInstance } from "../../Hooks/useGlobalInstance";
+import useAuthContext from "../../Utils/useAuthContext";
 
 const Register = () => {
   const { createUser, profileUpdate } = useAuthContext();
@@ -40,7 +41,7 @@ const Register = () => {
 
     const name = data?.name;
     const email = data?.email;
-    const role = "user"
+    const role = "student"
     const info = { image, name, email, role };
     const toastId = toast.loading("Register Successfully Done");
     createUser(email, data?.password)

@@ -2,8 +2,9 @@ import { Box, Button, SvgIcon, Typography } from "@mui/material";
 
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
-import useAuthContext from "../../Utils/useAuthcontext";
+
 import { globalInstance } from "../../Hooks/useGlobalInstance";
+import useAuthContext from "../../Utils/useAuthContext";
 
 
 const LoginWith = () => {
@@ -19,8 +20,9 @@ const LoginWith = () => {
         const name = res?.user?.displayName;
         const email = res?.user?.email;
         const image = res?.user?.photoURL;
+        const role = "student"
 
-        const info = { image, name, email };
+        const info = { image, name, email , role};
 
         await globalInstance.post("/users", info).then((res) => {
           if (res.data.message === "success") {

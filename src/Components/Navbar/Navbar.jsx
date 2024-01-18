@@ -9,14 +9,14 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import "./navbar.css";
 
-
 import { Avatar, Button, MenuItem, Tooltip } from "@mui/material";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import HomePageNavLink from "./HomePageNavlink";
 import useAuthContext from "../../Utils/useAuthContext";
 import LogOutAndDashboard from "./LohOutAndDashboard";
-
+import SearchCourse from "../Search from/SearchCourse";
+import LoginButton from "../Button/LoginButton";
 
 const Navbar = () => {
   const { user, logOut } = useAuthContext();
@@ -41,8 +41,6 @@ const Navbar = () => {
     setAnchorElNav(null);
   };
 
-
-
   return (
     <>
       <AppBar
@@ -66,8 +64,7 @@ const Navbar = () => {
                 textDecoration: "none",
               }}
             >
-
-                {/* logo  */}
+              {/* logo  */}
               <img
                 className="w-36 md:w-20"
                 src="https://i.ibb.co/Qnk6smk/pngwing-com-15.png"
@@ -122,14 +119,20 @@ const Navbar = () => {
                 color: "inherit",
                 textDecoration: "none",
                 width: "min-content",
+                height: "full",
               }}
             >
               <img
-                style={{ width: "30%" }}
+                className="w-full md:w-[30%] lg:w-[30%]"
                 src="https://i.ibb.co/qFjmy1b/pngwing-com-9.png"
                 alt=""
               />
             </Typography>
+
+            {/* search input section  */}
+            <div>
+              <SearchCourse />
+            </div>
             {/* large device  */}
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               <HomePageNavLink></HomePageNavLink>
@@ -137,18 +140,7 @@ const Navbar = () => {
             {/* Login and logout button  */}
             {!user ? (
               <Link to={"/login"}>
-                <Button
-                  variant="outlined"
-                  sx={{
-                    bgcolor: "white",
-                    ":hover": {
-                      bgcolor: "unset",
-                    },
-                  }}
-                  color="secondary"
-                >
-                  Login
-                </Button>
+                <LoginButton />
               </Link>
             ) : (
               <Box sx={{ flexGrow: 0 }}>
@@ -186,6 +178,7 @@ const Navbar = () => {
                   onClose={handleCloseUserMenu}
                 >
                   <MenuItem onClick={handleCloseUserMenu}>
+                    {/* dashboard  */}
                     <LogOutAndDashboard></LogOutAndDashboard>
                   </MenuItem>
                 </Menu>
